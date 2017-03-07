@@ -9,11 +9,11 @@
     <body>
         <h1>Welcome!</h1>
         <br>
-        <a href="<spring:url value='/userpage' />">Userpage</a>
+        <a href="<spring:url value='/eventPage' />">EventPage</a>
         <br>
-        <a href="<spring:url value='/eventpage' />">EventPage</a>
+        <a href="<spring:url value='/userProfilePage' />">UserProfile Page</a>
         <br>
-        <a href="<spring:url value='/userpage' />">Userpage</a>
+        <a href="<spring:url value='/createPage' />">Create user and user profile Page</a>
         <br>
     </body>
 </html>

@@ -4,10 +4,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hello World!</title>
+        <title>This is for an event?</title>
     </head>
     <body>
-        <h1>Hello <b><c:out value="${pageContext.request.remoteUser}"/></b> </h1>
+        <h1>This is for an event?  <b><c:out value="${pageContext.request.remoteUser}"/></b> </h1>
         <form action="/logout" method="post">
             <input type="submit" value="Sign Out"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
