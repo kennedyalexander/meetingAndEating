@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
@@ -44,9 +45,14 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
 //			  .csrf();
 //	    }
 	
-	
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/js/**");
+        web.ignoring().antMatchers("/css/**");
+    }
+		
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {					
 
         http
         .authorizeRequests()
@@ -60,6 +66,4 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
         .logout()
             .permitAll();
 	}
-
-
 }

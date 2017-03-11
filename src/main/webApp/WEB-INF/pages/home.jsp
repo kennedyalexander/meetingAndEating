@@ -5,15 +5,22 @@
 <html>
     <head>
         <title>Spring Security Example - ProgrammingFree</title>
+         <jsp:include page="../includes/css.jsp"></jsp:include>
     </head>
-    <body>
-        <h1>Welcome!</h1>
-        <br>
-        <a href="<spring:url value='/userpage' />">Userpage</a>
-        <br>
-        <a href="<spring:url value='/eventpage' />">EventPage</a>
-        <br>
-        <a href="<spring:url value='/userpage' />">Userpage</a>
-        <br>
+    <body>      
+        <div class="container">
+            <header>
+                <div class="logo"></div>
+                <nav>
+                    <ul>
+                        <li><a href="<spring:url value='/eventPage' />">EventPage</a></li>
+                        <li><a href="<spring:url value='/userProfilePage' />">UserProfile Page</a></li>
+                        <li><a href="<spring:url value='/createPage' />">Create user and user profile Page</a></li>
+                        <li><a href="<spring:url value='/login' />">Log in</a></li>
+                     </ul>
+                </nav>
+            </header>
+        </div>
+        <jsp:include page="../includes/js.jsp"></jsp:include>
     </body>
 </html>

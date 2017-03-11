@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import com.meetAndEat.config.SecurityWebConfig;
 
 @EnableWebMvc
@@ -26,5 +26,10 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
 	        return resolver;
 	    }
 
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**").addResourceLocations("/js/");				
+		registry.addResourceHandler("/css/**").addResourceLocations("/css/");
 	}
+}
 
