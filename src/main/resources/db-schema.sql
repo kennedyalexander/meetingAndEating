@@ -6,7 +6,7 @@ CREATE TABLE USERS (
 
 
 CREATE TABLE USER_ROLES (
-    r_id int(11) NOT NULL AUTO_INCREMENT,
+    r_id int(11) auto_increment primary key,
     r_username varchar(45) NOT NULL,
     r_role varchar(45) NOT NULL,
     PRIMARY KEY (r_id),

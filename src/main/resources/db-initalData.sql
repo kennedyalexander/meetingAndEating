@@ -4,6 +4,7 @@ INSERT INTO USERS VALUES ('user2', 'password', 1);
 INSERT INTO USERS VALUES ('alexander', 'password', 1);
 INSERT INTO USERS VALUES ('suger','password', 1);
 INSERT INTO USERS VALUES ('krankenwagen', 'password', 1);
+INSERT INTO USERS VALUES ('teenager', 'teenager', 1);
 
 INSERT INTO USER_ROLES VALUES (1, 'user', 'ROLE_USER');
 INSERT INTO USER_ROLES VALUES (2, 'user2', 'ROLE_USER');

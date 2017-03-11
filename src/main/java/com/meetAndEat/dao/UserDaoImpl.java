@@ -47,8 +47,11 @@ public class UserDaoImpl implements UserDao{
 	
 	public User createUser(User user) {
 			String statement = "";
-			statement = String.format("INSERT INTO USERS VALUES ('%s', '%s', 1)", user.getUsername().toLowerCase(),	user.getPassword());
-			h2JdbcTemplate.update(statement);
+			statement = String.format("INSERT INTO USERS VALUES ('%s', '%s', 1);"
+					+ "INSERT INTO USER_ROLES(r_username, r_role) VALUES ('%s', 'ROLE_USER');", user.getUsername().toLowerCase(), user.getPassword(), user.getUsername().toLowerCase());
+			
+			
+			h2JdbcTemplate.execute(statement);
 			return user;
 		}
 
