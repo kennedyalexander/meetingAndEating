@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,16 +25,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.meetAndEat.dao.UserDao;
 import com.meetAndEat.dao.UserDaoImpl;
+import com.meetAndEat.models.Event;
 import com.meetAndEat.models.User;
 import com.meetAndEat.models.UserInformation;
+import com.meetAndEat.services.EventCreationServiceImpl;
+import com.meetAndEat.services.UserManagementServiceImpl;
 
 @Controller
 @EnableAutoConfiguration
 
 public class SiteController {
 	@Autowired
-	UserDaoImpl userDaoImpl;
-
+	UserManagementServiceImpl userManagementServiceImpl;
+	@Autowired
+	EventCreationServiceImpl eventCreationServiceImpl;
 	// Add login
 	// Add event page
 	// Add user page
@@ -77,7 +82,7 @@ public class SiteController {
 
 	@RequestMapping(value = "/userProfilePage", method = RequestMethod.GET)
 	public ModelAndView userProfilePage( Principal principal) {
-		UserInformation userInformation = userDaoImpl.getUserInformation(principal.getName());
+		UserInformation userInformation = userManagementServiceImpl.getUserInformation(principal.getName());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("userProfilePage");
 		model.addObject("username", userInformation.getUsername());
@@ -93,14 +98,22 @@ public class SiteController {
 	@PostMapping("/createUser")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void createUser(@ModelAttribute User user) {
-		System.out.println("Oranges");
-		userDaoImpl.createUser(user);
-		System.out.println("Lemons");
+		userManagementServiceImpl.createUser(user);
 	}
 	
-//	@ModelAttribute("userForm") User user,
-	@PostMapping("/createUserProfilePage")
-	public void createUserProfile(@ModelAttribute UserInformation userInformation) {
+	@PostMapping("/createEvent")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void createEvent(@ModelAttribute Event event, Principal principal) {
+		eventCreationServiceImpl.createEvent(event, principal.getName());
 	}
+	
+	@GetMapping("/getEvents")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void getEvents(@ModelAttribute Event event, Principal principal) {
+		
+	}
+	
+	
+	
 
 }
