@@ -110,7 +110,7 @@ public class SiteController {
 	@GetMapping("/getEvents")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void getEvents(@ModelAttribute Event event, Principal principal) {
-		
+		//eventCreationServiceImpl.get
 	}
 	
 	
