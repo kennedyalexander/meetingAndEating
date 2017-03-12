@@ -2,26 +2,59 @@ package com.meetAndEat.models;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
 	
-	String eventName;
-	Date eventDate;
-	int amountOfSpace;
-	String location;
+	@Id
+	public String id;
+	
+	public String eventName;
+	public Date eventDate;
+	public int minimumGuests;
+	public int maximumGuests;
+	public String location;
+	public String host;
+	public String food;
+	public EventSatus eventStatus;
+	
 	
 	public Event(){
 		this.eventName = "";
 		this.eventDate = new Date();
-		this.amountOfSpace = 0;
+		this.minimumGuests = 0;
+		this.minimumGuests = 0;
 		this.location = "";
+		this.host = "";
+		this.food = "";
+		this.eventStatus = EventSatus.PENDING;
 	}
-	
-	public Event(String eventName, Date eventDate, int amountOfSpace, String location) {
+
+
+	public Event(String id, String eventName, Date eventDate, int minimumGuests, int maximumGuests, String location,
+			String host, String food, EventSatus eventStatus) {
+		this.id = id;
 		this.eventName = eventName;
 		this.eventDate = eventDate;
-		this.amountOfSpace = amountOfSpace;
+		this.minimumGuests = minimumGuests;
+		this.maximumGuests = maximumGuests;
 		this.location = location;
+		this.host = host;
+		this.food = food;
+		this.eventStatus = eventStatus;
 	}
+
+
+	/**
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
+	}
+
 
 	/**
 	 * @return the eventName
@@ -30,6 +63,7 @@ public class Event {
 		return eventName;
 	}
 
+
 	/**
 	 * @return the eventDate
 	 */
@@ -37,12 +71,22 @@ public class Event {
 		return eventDate;
 	}
 
+
 	/**
-	 * @return the amountOfSpace
+	 * @return the minimumGuests
 	 */
-	public int getAmountOfSpace() {
-		return amountOfSpace;
+	public int getMinimumGuests() {
+		return minimumGuests;
 	}
+
+
+	/**
+	 * @return the maximumGuests
+	 */
+	public int getMaximumGuests() {
+		return maximumGuests;
+	}
+
 
 	/**
 	 * @return the location
@@ -51,12 +95,46 @@ public class Event {
 		return location;
 	}
 
+
+	/**
+	 * @return the host
+	 */
+	public String getHost() {
+		return host;
+	}
+
+
+	/**
+	 * @return the food
+	 */
+	public String getFood() {
+		return food;
+	}
+
+
+	/**
+	 * @return the eventStatus
+	 */
+	public EventSatus getEventStatus() {
+		return eventStatus;
+	}
+
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
 	/**
 	 * @param eventName the eventName to set
 	 */
 	public void setEventName(String eventName) {
 		this.eventName = eventName;
 	}
+
 
 	/**
 	 * @param eventDate the eventDate to set
@@ -65,12 +143,22 @@ public class Event {
 		this.eventDate = eventDate;
 	}
 
+
 	/**
-	 * @param amountOfSpace the amountOfSpace to set
+	 * @param minimumGuests the minimumGuests to set
 	 */
-	public void setAmountOfSpace(int amountOfSpace) {
-		this.amountOfSpace = amountOfSpace;
+	public void setMinimumGuests(int minimumGuests) {
+		this.minimumGuests = minimumGuests;
 	}
+
+
+	/**
+	 * @param maximumGuests the maximumGuests to set
+	 */
+	public void setMaximumGuests(int maximumGuests) {
+		this.maximumGuests = maximumGuests;
+	}
+
 
 	/**
 	 * @param location the location to set
@@ -78,6 +166,32 @@ public class Event {
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
+
+	/**
+	 * @param host the host to set
+	 */
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+
+	/**
+	 * @param food the food to set
+	 */
+	public void setFood(String food) {
+		this.food = food;
+	}
+
+
+	/**
+	 * @param eventStatus the eventStatus to set
+	 */
+	public void setEventStatus(EventSatus eventStatus) {
+		this.eventStatus = eventStatus;
+	}
+	
+	
 
 	
 

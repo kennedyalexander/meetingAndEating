@@ -2,7 +2,9 @@ package com.meetAndEat.controllers;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.sql.DataSource;
 
@@ -26,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.meetAndEat.dao.UserDao;
 import com.meetAndEat.dao.UserDaoImpl;
 import com.meetAndEat.models.Event;
+import com.meetAndEat.models.EventSatus;
 import com.meetAndEat.models.User;
 import com.meetAndEat.models.UserInformation;
 import com.meetAndEat.services.EventCreationServiceImpl;
@@ -73,10 +76,10 @@ public class SiteController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/createPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/createUserPage", method = RequestMethod.GET)
 	public ModelAndView createPage() {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("createPage");
+		model.setViewName("createUserPage");
 		return model;
 	}
 
@@ -101,16 +104,32 @@ public class SiteController {
 		userManagementServiceImpl.createUser(user);
 	}
 	
+
+	
 	@PostMapping("/createEvent")
 	@ResponseStatus(value = HttpStatus.OK)
-	public void createEvent(@ModelAttribute Event event, Principal principal) {
+	public void createEvent( Principal principal) {
+		Event event = new Event(UUID.randomUUID().toString(),
+				"Eventname",
+				new Date(2011, 11, 3),
+				3,
+				5,
+				"locationlocation",
+				principal.getName(),
+				"FOOD",
+				EventSatus.SEARCHING);
 		eventCreationServiceImpl.createEvent(event, principal.getName());
 	}
 	
 	@GetMapping("/getEventsForUser")
 	@ResponseStatus(value = HttpStatus.OK)
-	public List<Event> getEventsForUser(Principal principal) {
-		return eventCreationServiceImpl.getUsersEvents(principal.getName());
+	public ModelAndView getEventsForUser(Principal principal) {
+	List<Event> events = eventCreationServiceImpl.getUsersEvents(principal.getName());
+		ModelAndView model = new ModelAndView();
+		model.setViewName("userProfilePage");
+		model.addObject("username", events.get(0).getHost());
+		model.addObject("firstName", events.get(0).getEventDate());
+		return model;
 	}
 	
 	
