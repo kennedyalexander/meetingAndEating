@@ -107,10 +107,10 @@ public class SiteController {
 		eventCreationServiceImpl.createEvent(event, principal.getName());
 	}
 	
-	@GetMapping("/getEvents")
+	@GetMapping("/getEventsForUser")
 	@ResponseStatus(value = HttpStatus.OK)
-	public void getEvents(@ModelAttribute Event event, Principal principal) {
-		//eventCreationServiceImpl.get
+	public List<Event> getEventsForUser(Principal principal) {
+		return eventCreationServiceImpl.getUsersEvents(principal.getName());
 	}
 	
 	

@@ -15,7 +15,8 @@
                     <ul>
                         <li><a href="<spring:url value='/eventPage' />">EventPage</a></li>
                         <li><a href="<spring:url value='/userProfilePage' />">UserProfile Page</a></li>
-                        <li><a href="<spring:url value='/createPage' />">Create user and user profile Page</a></li>
+                        <li><a href="<spring:url value='/createUserPage' />">Create User</a></li>
+                        <li><a href="<spring:url value='/createEventPage' />">Create Event</a>
                         <li><a href="<spring:url value='/login' />">Log in</a></li>
                      </ul>
                 </nav>

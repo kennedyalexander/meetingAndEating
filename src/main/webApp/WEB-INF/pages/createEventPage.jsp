@@ -1,20 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>This is for an event?</title>
+      
+        <title>This is for creating things!</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
-        <h1>This is for an event?  <b><c:out value="${pageContext.request.remoteUser}"/></b> </h1>
+        <h1>Hello <b>
+            <c:out value="${pageContext.request.remoteUser}"/></b> </h1>
+    
+
         
-        
-        
-        <div>
-        
-        
-           
         <form id="form" action="" method="post">
 Name: <input type="text" name="username"><br>
 Age: <input type="text" name="password"><br>
@@ -30,7 +29,7 @@ Age: <input type="text" name="password"><br>
         $("#submit").on('click', function(){
             // send ajax
             $.ajax({
-                url: '/createUser', // url where to submit the request
+                url: '/createEvent', // url where to submit the request
                 type : "POST", // type of action POST || GET
                 dataType : 'json', // data type
                 data : $("#form").serialize(), // post data || get data
@@ -47,8 +46,10 @@ Age: <input type="text" name="password"><br>
     });
 
 </script>
-        </div>
-        
+
+
+            
+    
         <form action="/logout" method="post">
             <input type="submit" value="Sign Out"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

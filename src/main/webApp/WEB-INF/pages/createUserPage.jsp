@@ -1,34 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
-      
-        <title>This is for creating things!</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>This is for an event?</title>
     </head>
     <body>
-        <h1>Hello <b>
-            <c:out value="${pageContext.request.remoteUser}"/></b> </h1>
-    
-        <div>
-            <h1>Form:</h1>
-            <form action="/createUser"  method="post">
-            <p>Name:        <input type="text" name="username" /></p>   
-            <p>Password:    <input type="text" name="password" /></p>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                            <input type="submit" value="Submit">
-            </form>
-          
-<form id="myForm" action="/createUser">
-  First name: <input type="text" name="username"><br>
-  Last name: <input type="text" name="password"><br><br>
-  <input type="button" onclick="mySubmitFunction()" value="Submit form">
-</form>
-            
-        </div>
+        <h1>This is for an event?  <b><c:out value="${pageContext.request.remoteUser}"/></b> </h1>
         
+        
+        
+        <div>
+        
+        
+           
         <form id="form" action="" method="post">
 Name: <input type="text" name="username"><br>
 Age: <input type="text" name="password"><br>
@@ -61,10 +47,8 @@ Age: <input type="text" name="password"><br>
     });
 
 </script>
-
-
-            
-    
+        </div>
+        
         <form action="/logout" method="post">
             <input type="submit" value="Sign Out"/>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
