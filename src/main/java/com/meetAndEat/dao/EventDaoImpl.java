@@ -23,7 +23,7 @@ public class EventDaoImpl implements EventDao{
 	@Autowired
     private EventRepository repository;
 	
-	public void createEvent(Event event, String username) {
+	public void createEvent(Event event) {
 		repository.save(event);
 	}
 	

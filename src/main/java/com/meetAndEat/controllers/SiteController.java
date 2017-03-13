@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.meetAndEat.dao.UserDao;
 import com.meetAndEat.dao.UserDaoImpl;
+import com.meetAndEat.dtos.EventDto;
 import com.meetAndEat.models.Event;
 import com.meetAndEat.models.EventSatus;
 import com.meetAndEat.models.User;
@@ -69,10 +70,10 @@ public class SiteController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/eventPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/createEventPage", method = RequestMethod.GET)
 	public ModelAndView eventPage() {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("eventPage");
+		model.setViewName("createEventPage");
 		return model;
 	}
 	
@@ -108,17 +109,10 @@ public class SiteController {
 	
 	@PostMapping("/createEvent")
 	@ResponseStatus(value = HttpStatus.OK)
-	public void createEvent( Principal principal) {
-		Event event = new Event(UUID.randomUUID().toString(),
-				"Eventname",
-				new Date(2011, 11, 3),
-				3,
-				5,
-				"locationlocation",
-				principal.getName(),
-				"FOOD",
-				EventSatus.SEARCHING);
-		eventCreationServiceImpl.createEvent(event, principal.getName());
+	public void createEvent( Principal principal, @ModelAttribute EventDto eventDto) {
+		Event event = eventDtoToEvent(eventDto, principal.getName(), EventSatus.PENDING);
+		eventCreationServiceImpl.createEvent(event);
+		System.out.println("Created");
 	}
 	
 	@GetMapping("/getEventsForUser")
@@ -132,7 +126,10 @@ public class SiteController {
 		return model;
 	}
 	
-	
+	public Event eventDtoToEvent(EventDto eventDto, String creator, EventSatus eventStatus){
+		return new Event(UUID.randomUUID().toString(), eventDto.getEventName(),eventDto.eventDate, eventDto.minimumGuests, eventDto.maximumGuests, eventDto.location, creator, eventDto.food
+				, eventStatus);
+	}
 	
 
 }

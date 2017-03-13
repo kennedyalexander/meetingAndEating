@@ -14,12 +14,18 @@
     
 
         
-        <form id="form" action="" method="post">
-Name: <input type="text" name="username"><br>
-Age: <input type="text" name="password"><br>
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-<input id="submit" type="button" name="submit" value="submit">
+<form id="form" action="" method="post">
+    EventName: <input type="text" name="eventName"><br>
+    Date: <input type="date" name="eventDate"><br>
+    Minimum Guests: <input type="text" name="minimumGuests"><br>
+    Maximum Guests: <input type="text" name="maximumGuests"><br>
+    Location: <input type="text" name="location"><br>
+    Food: <input type="text" name="food"><br>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input id="submit" type="button" name="submit" value="submit">
 </form>
+        
+
         
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

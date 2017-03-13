@@ -16,8 +16,8 @@ public class EventCreationServiceImpl implements EventCreationService{
 	@Autowired
 	EventDaoImpl eventDaoImpl;
 	
-	public HttpStatus createEvent(Event event, String username) {
-		eventDaoImpl.createEvent(event, username);
+	public HttpStatus createEvent(Event event) {
+		eventDaoImpl.createEvent(event);
 		return HttpStatus.ACCEPTED;
 	}
 	
