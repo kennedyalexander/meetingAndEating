@@ -28,8 +28,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-				<!-- Spring -->
+
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -47,7 +47,7 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-				<!-- Spring Security -->
+		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
@@ -84,15 +84,23 @@
 			<version>1.10.2</version>
 		</dependency>
 
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-mongodb</artifactId>
-</dependency>
+		<!-- https://mvnrepository.com/artifact/jstl/jstl -->
 		<dependency>
-		    <groupId>de.flapdoodle.embed</groupId>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
 		</dependency>
-		
+
 
 		<!-- Database depedencies -->
 		<dependency>
@@ -106,23 +114,23 @@
 			<artifactId>h2</artifactId>
 			<version>1.4.193</version>
 		</dependency>
-<dependency>
+		<dependency>
 
-    <groupId>org.apache.tomcat.embed</groupId>
+			<groupId>org.apache.tomcat.embed</groupId>
 
-    <artifactId>tomcat-embed-jasper</artifactId>
+			<artifactId>tomcat-embed-jasper</artifactId>
 
-    <scope>provided</scope>
+			<scope>provided</scope>
 
-</dependency>
+		</dependency>
 
-<dependency>
+		<dependency>
 
-    <groupId>javax.servlet</groupId>
+			<groupId>javax.servlet</groupId>
 
-    <artifactId>jstl</artifactId>
+			<artifactId>jstl</artifactId>
 
-</dependency>
+		</dependency>
 
 
 		<!-- test dependencies -->

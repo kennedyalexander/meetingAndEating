@@ -37,7 +37,7 @@ import com.meetAndEat.models.Event;
 import com.meetAndEat.models.EventSatus;
 import com.meetAndEat.models.User;
 import com.meetAndEat.models.UserInformation;
-import com.meetAndEat.services.EventCreationServiceImpl;
+import com.meetAndEat.services.EventManagementServiceImpl;
 import com.meetAndEat.services.UserManagementServiceImpl;
 
 @Controller
@@ -47,7 +47,7 @@ public class SiteController {
 	@Autowired
 	UserManagementServiceImpl userManagementServiceImpl;
 	@Autowired
-	EventCreationServiceImpl eventCreationServiceImpl;
+	EventManagementServiceImpl eventCreationServiceImpl;
 	// Add login
 	// Add event page
 	// Add user page
@@ -120,18 +120,27 @@ public class SiteController {
 		System.out.println("Created");
 	}
 	
+	@PostMapping("/activateEvent" )
+	@ResponseStatus(value = HttpStatus.OK)
+	public void activateEvent( Principal principal, @RequestParam String eventID ) {
+//		Event event = eventDtoToEvent(eventDto, principal.getName(), EventSatus.PENDING);
+//		eventCreationServiceImpl.createEvent(event);
+		System.out.println("Activate " + eventID);
+	}
+	
 	@GetMapping("/getEventsPage")
 	@ResponseStatus(value = HttpStatus.OK)
 	public ModelAndView getEventPage(Principal principal) {
+		List<Event> events = eventCreationServiceImpl.getUsersEvents(principal.getName());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("userEvents");
-		model.addObject("username", principal.getName());		
+		model.addObject("username", principal.getName());	
+		model.addObject("events", events);
 		return model;
 	}
 	
-	@PostMapping("/getEventsForUser")
-	@ResponseStatus(value = HttpStatus.OK)
-	public List<Event> getEventsForUser(Principal principal) {
+	@RequestMapping(value = "/getEventsForUser", method = RequestMethod.POST,  consumes = "application/json")
+	public @ResponseBody List<Event> getEventsForUser(Principal principal) {
 	List<Event> events = eventCreationServiceImpl.getUsersEvents(principal.getName());
 		return events;
 	}

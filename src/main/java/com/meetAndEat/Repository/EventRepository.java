@@ -10,5 +10,9 @@ public interface EventRepository extends MongoRepository<Event, String>  {
 	
 	public List<Event> findByHost(String username);
 	
-
+	public List<Event> findById(String eventId);
+	
+	
+	
+	
 }

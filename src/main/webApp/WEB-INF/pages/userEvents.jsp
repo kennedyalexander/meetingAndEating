@@ -8,25 +8,52 @@
     </head>
     <body>
         <h1>This is for an event?  <b><c:out value="${pageContext.request.remoteUser}"/></b> </h1>
-        
-        
-               
-<form id="form" action="" method="post">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <input id="submit" type="button" name="Get Events" value="submit">
-</form>
-        
+        <table>
+        <c:if test="${not empty events}">
+            <ul>
+                <c:forEach var="listValue" items="${events}">
+                <tr>
+                    <td>
+                        ${listValue.getEventName()}
+                    </td>
+                    <td>
+                        ${listValue.getId()}
+                    </td>
+                    <td>
+                        ${listValue.getEventStatus()}
+                    </td>
+                    <td>       
+                        <form id="form" action="/activateEvent" method="post">
+                            <input type="hidden" name="eventID" value="${listValue.getId()}"/>
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <input id="submit" type="button" name="submit" value="submit">
+                        </form>
+                    </td>
+                    </tr>
+                </c:forEach>
 
+            </ul>
+        </c:if>
+        
+        </table>
+        
+        <form action="/logout" method="post">
+            <input type="submit" value="Sign Out"/>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
         
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        
+        
+        
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
     $(document).ready(function(){
         // click on button submit
         $("#submit").on('click', function(){
             // send ajax
             $.ajax({
-                url: '/getEventsForUser', // url where to submit the request
+                url: '/activateEvent', // url where to submit the request
                 type : "POST", // type of action POST || GET
                 dataType : 'json', // data type
                 data : $("#form").serialize(), // post data || get data
@@ -43,13 +70,5 @@
     });
 
 </script>
-        
-        
-        
-        
-        <form action="/logout" method="post">
-            <input type="submit" value="Sign Out"/>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        </form>
     </body>
 </html>
