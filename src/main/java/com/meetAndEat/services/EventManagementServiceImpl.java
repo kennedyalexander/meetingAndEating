@@ -27,7 +27,7 @@ public class EventManagementServiceImpl implements EventManagementService{
 		return eventDaoImpl.getEventsForUser(username);
 	}
 	
-	public  HttpStatus ActivateEvent(String event) {
+	public  HttpStatus activateEvent(String event) {
 		Event activateMe = eventDaoImpl.activateEvent(event);
 		activateMe.setEventStatus(EventSatus.SEARCHING);
 		eventDaoImpl.updateEvent(activateMe);

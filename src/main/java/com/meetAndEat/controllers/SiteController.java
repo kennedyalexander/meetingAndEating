@@ -47,7 +47,7 @@ public class SiteController {
 	@Autowired
 	UserManagementServiceImpl userManagementServiceImpl;
 	@Autowired
-	EventManagementServiceImpl eventCreationServiceImpl;
+	EventManagementServiceImpl eventManagementServiceImpl;
 	// Add login
 	// Add event page
 	// Add user page
@@ -116,7 +116,7 @@ public class SiteController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public void createEvent( Principal principal, @ModelAttribute EventDto eventDto ) {
 		Event event = eventDtoToEvent(eventDto, principal.getName(), EventSatus.PENDING);
-		eventCreationServiceImpl.createEvent(event);
+		eventManagementServiceImpl.createEvent(event);
 		System.out.println("Created");
 	}
 	
@@ -125,13 +125,14 @@ public class SiteController {
 	public void activateEvent( Principal principal, @RequestParam String eventID ) {
 //		Event event = eventDtoToEvent(eventDto, principal.getName(), EventSatus.PENDING);
 //		eventCreationServiceImpl.createEvent(event);
+		eventManagementServiceImpl.activateEvent(eventID);
 		System.out.println("Activate " + eventID);
 	}
 	
 	@GetMapping("/getEventsPage")
 	@ResponseStatus(value = HttpStatus.OK)
 	public ModelAndView getEventPage(Principal principal) {
-		List<Event> events = eventCreationServiceImpl.getUsersEvents(principal.getName());
+		List<Event> events = eventManagementServiceImpl.getUsersEvents(principal.getName());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("userEvents");
 		model.addObject("username", principal.getName());	
@@ -141,7 +142,7 @@ public class SiteController {
 	
 	@RequestMapping(value = "/getEventsForUser", method = RequestMethod.POST,  consumes = "application/json")
 	public @ResponseBody List<Event> getEventsForUser(Principal principal) {
-	List<Event> events = eventCreationServiceImpl.getUsersEvents(principal.getName());
+	List<Event> events = eventManagementServiceImpl.getUsersEvents(principal.getName());
 		return events;
 	}
 	
