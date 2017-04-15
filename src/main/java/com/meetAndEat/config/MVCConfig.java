@@ -14,8 +14,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import com.meetAndEat.config.SecurityWebConfig;
 
-@EnableWebMvc
-@Configuration
+
 public class MVCConfig extends WebMvcConfigurerAdapter {
 
 	    @Bean

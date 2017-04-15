@@ -2,7 +2,7 @@ package com.meetAndEat.models;
 
 import java.util.Date;
 
-public class UserInformation {
+public class UserDetails {
 
 	private String username;
 	private String firstName;
@@ -12,7 +12,7 @@ public class UserInformation {
 	private String location;
 	
 	
-	public UserInformation(String username, String firstName, String lastName, String email, Date dob, String location) {
+	public UserDetails(String username, String firstName, String lastName, String email, Date dob, String location) {
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -20,7 +20,7 @@ public class UserInformation {
 		this.dob = dob;
 		this.location = location;
 	}
-	public UserInformation() {
+	public UserDetails() {
 		this.username = "";
 		this.firstName = "";
 		this.lastName = "";

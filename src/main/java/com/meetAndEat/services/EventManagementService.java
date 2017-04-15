@@ -6,6 +6,6 @@ import com.meetAndEat.models.Event;
 
 public interface EventManagementService {
 	
-	public HttpStatus createEvent(Event event);
+	HttpStatus createEvent(Event event);
 
 }

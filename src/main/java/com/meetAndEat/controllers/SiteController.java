@@ -1,27 +1,21 @@
 package com.meetAndEat.controllers;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,14 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.meetAndEat.dao.UserDao;
-import com.meetAndEat.dao.UserDaoImpl;
 import com.meetAndEat.dtos.EventDto;
 import com.meetAndEat.models.Event;
 import com.meetAndEat.models.EventSatus;
 import com.meetAndEat.models.User;
-import com.meetAndEat.models.UserInformation;
+import com.meetAndEat.models.UserDetails;
 import com.meetAndEat.services.EventManagementServiceImpl;
 import com.meetAndEat.services.UserManagementServiceImpl;
 
@@ -91,15 +82,15 @@ public class SiteController {
 
 	@RequestMapping(value = "/userProfilePage", method = RequestMethod.GET)
 	public ModelAndView userProfilePage( Principal principal) {
-		UserInformation userInformation = userManagementServiceImpl.getUserInformation(principal.getName());
+		UserDetails userDetails = userManagementServiceImpl.getUserInformation(principal.getName());
 		ModelAndView model = new ModelAndView();
 		model.setViewName("userProfilePage");
-		model.addObject("username", userInformation.getUsername());
-		model.addObject("firstName", userInformation.getFirstName());
-		model.addObject("lastName", userInformation.getLastName());
-		model.addObject("dateOfBirth", userInformation.getDob());
-		model.addObject("emailAddress", userInformation.getEmail());
-		model.addObject("location", userInformation.getLocation());
+		model.addObject("username", userDetails.getUsername());
+		model.addObject("firstName", userDetails.getFirstName());
+		model.addObject("lastName", userDetails.getLastName());
+		model.addObject("dateOfBirth", userDetails.getDob());
+		model.addObject("emailAddress", userDetails.getEmail());
+		model.addObject("location", userDetails.getLocation());
 		return model;
 	}
 	

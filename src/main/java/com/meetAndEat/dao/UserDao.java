@@ -1,11 +1,11 @@
 package com.meetAndEat.dao;
 
 import com.meetAndEat.models.User;
-import com.meetAndEat.models.UserInformation;
+import com.meetAndEat.models.UserDetails;
 
 public interface UserDao {
 
-	public User createUser(User user);
-	public UserInformation getUserInformation(String username);
+	User createUser(User user);
+	UserDetails getUserInformation(String username);
 	
 }

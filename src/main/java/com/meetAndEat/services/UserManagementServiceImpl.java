@@ -6,9 +6,8 @@ import org.springframework.stereotype.Service;
 
 
 import com.meetAndEat.dao.UserDaoImpl;
-import com.meetAndEat.models.Event;
 import com.meetAndEat.models.User;
-import com.meetAndEat.models.UserInformation;
+import com.meetAndEat.models.UserDetails;
 
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
@@ -25,7 +24,7 @@ public class UserManagementServiceImpl implements UserManagementService {
 			return HttpStatus.ACCEPTED;
 		}
 		
-		public UserInformation getUserInformation(String user){
+		public UserDetails getUserInformation(String user){
 			return userDaoImpl.getUserInformation(user);
 		}
 

@@ -8,9 +8,9 @@ import com.meetAndEat.models.Event;
 
 public interface EventRepository extends MongoRepository<Event, String>  {
 	
-	public List<Event> findByHost(String username);
+	List<Event> findByHost(String username);
 	
-	public List<Event> findById(String eventId);
+	List<Event> findById(String eventId);
 	
 	
 	
