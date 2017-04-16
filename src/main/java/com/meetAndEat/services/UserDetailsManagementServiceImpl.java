@@ -21,12 +21,12 @@ public class UserDetailsManagementServiceImpl implements UserDetailsManagementSe
 	}
 
 	@Override
-	public HttpStatus deleteUserDetails(User user) {
+	public HttpStatus deleteUserDetails(String user) {
 		return null;
 	}
 
 	@Override
-	public HttpStatus getUserDetails(User user) {
+	public UserDetails getUserDetails(String user) {
 		return null;
 	}
 }

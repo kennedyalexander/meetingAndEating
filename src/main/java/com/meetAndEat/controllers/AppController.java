@@ -1,12 +1,20 @@
 package com.meetAndEat.controllers;
 
+import com.meetAndEat.models.Event;
+import com.meetAndEat.models.User;
 import com.meetAndEat.models.UserDetails;
+import com.meetAndEat.services.EventManagementServiceImpl;
+import com.meetAndEat.services.UserDetailsManagementService;
+import com.meetAndEat.services.UserDetailsManagementServiceImpl;
 import com.meetAndEat.services.UserManagementServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @EnableAutoConfiguration
@@ -16,37 +24,32 @@ public class AppController {
     @Autowired
     UserManagementServiceImpl userManagementServiceImpl;
 
+    @Autowired
+	UserDetailsManagementServiceImpl userDetailsManagementService;
 
-//        @RequestMapping("/userDetails")
-//        public UserDetails userDetails(@RequestParam(value="username") String username) {
-//            userManagementServiceImpl.getUserInformation(String username);
-//            return new UserDetails( );
-//        }
+	@Autowired
+	EventManagementServiceImpl eventManagementService;
+
 
     @GetMapping("/getUserDetails")
     public UserDetails getUserDetails(@RequestParam(value="username") String username) {
-
-        return userManagementServiceImpl.getUserInformation(username);
+        return userDetailsManagementService.getUserDetails(username);
     }
+
+	@PostMapping("/createUserDetails")
+	public HttpStatus createUserDetails(@RequestBody UserDetails userDetails, @RequestParam(value="username") String username) {
+		return userDetailsManagementService.createUserDetails(userDetails);
+	}
 
     @PostMapping("/updateUserDetails")
-    public ResponseEntity<?> updateUserDetails(@RequestBody UserDetails userDetails, @RequestParam(value="username") String username) {
-//get details for user
-        //assemble details into thing
+    public HttpStatus updateUserDetails(@RequestBody UserDetails userDetails, @RequestParam(value="username") String username) {
 	    System.out.println("Stub Lol");
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
-    }
-
-    @PostMapping("/createUserDetails")
-    public UserDetails createUserDetails(@RequestParam(value="username") String username) {
-		userManagementServiceImpl.createUser(username,)
-        return userManagementServiceImpl.getUserInformation(username);
+        return userDetailsManagementService.updateUserDetails(userDetails);
     }
 
     @GetMapping("/deleteUserDetails")
-    public UserDetails deleteUserDetails(@RequestParam(value="username") String username) {
-
-        return userManagementServiceImpl.getUserInformation(username);
+    public HttpStatus deleteUserDetails(@RequestParam(value="username") String username) {
+        return userDetailsManagementService.deleteUserDetails(username);
     }
 
 //    @RequestMapping(method = RequestMethod.POST)
@@ -54,27 +57,33 @@ public class AppController {
 //        return new ResponseEntity<>(repository.save(input), HttpStatus.CREATED);
 
     @GetMapping("/getEvent")
-    public UserDetails getEvent(@RequestParam(value="eventID") String eventID) {
-
-        return userManagementServiceImpl.getUserInformation(username);
+    public Event getEvent(@RequestParam(value="eventID") String eventID) {
+        return eventManagementService.getEvent(eventID);
     }
 
     @PostMapping("/updateEvent")
-    public UserDetails updateEvent(@RequestParam(value="username") String username) {
-
-        return userManagementServiceImpl.getUserInformation(username);
+    public HttpStatus updateEvent(@RequestBody Event event) {
+        return eventManagementService.updateEvent(event);
     }
 
     @PostMapping("/createEvent")
-    public UserDetails createEvent(@RequestParam(value="username") String username) {
-
-        return userManagementServiceImpl.getUserInformation(username);
+    public HttpStatus createEvent(@RequestBody Event event) {
+        return eventManagementService.createEvent(event);
     }
 
     @GetMapping("/deleteEvent")
-    public UserDetails deleteEvent(@RequestParam(value="username") String username) {
-
-        return userManagementServiceImpl.getUserInformation(username);
+    public HttpStatus deleteEvent(@RequestParam(value="eventId") String eventId) {
+        return eventManagementService.deleteEvent(eventId);
     }
+
+    @GetMapping("/getEvents")
+	public List<Event> getEvents(){
+    	return eventManagementService.getEvents();
+    }
+
+	@GetMapping("/createSampleEvents")
+	public HttpStatus makeEvents(String user){
+		return eventManagementService.makeEvent(user);
+	}
 
 }

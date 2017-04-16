@@ -1,6 +1,7 @@
 package com.meetAndEat.models;
 
 import java.util.Date;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 
@@ -10,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Event {
 	
 	@Id
-	public String id;
+	public UUID id;
 	
 	public String eventName;
 	public Date eventDate;
@@ -34,9 +35,22 @@ public class Event {
 	}
 
 
-	public Event(String id, String eventName, Date eventDate, int minimumGuests, int maximumGuests, String location,
+	public Event(UUID id, String eventName, Date eventDate, int minimumGuests, int maximumGuests, String location,
 			String host, String food, EventSatus eventStatus) {
 		this.id = id;
+		this.eventName = eventName;
+		this.eventDate = eventDate;
+		this.minimumGuests = minimumGuests;
+		this.maximumGuests = maximumGuests;
+		this.location = location;
+		this.host = host;
+		this.food = food;
+		this.eventStatus = eventStatus;
+	}
+
+	public Event(String eventName, Date eventDate, int minimumGuests, int maximumGuests, String location,
+	             String host, String food, EventSatus eventStatus) {
+		this.id = UUID.randomUUID();
 		this.eventName = eventName;
 		this.eventDate = eventDate;
 		this.minimumGuests = minimumGuests;
@@ -51,7 +65,7 @@ public class Event {
 	/**
 	 * @return the id
 	 */
-	public String getId() {
+	public UUID getId() {
 		return id;
 	}
 
@@ -123,7 +137,7 @@ public class Event {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(String id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 

@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 
-import com.meetAndEat.dao.UserDaoImpl;
+import com.meetAndEat.dao.UserDetailsDaoImpl;
 import com.meetAndEat.models.User;
 import com.meetAndEat.models.UserDetails;
 
@@ -15,17 +15,17 @@ public class UserManagementServiceImpl implements UserManagementService {
 	
 
 		@Autowired
-		UserDaoImpl userDaoImpl;
+		UserDetailsDaoImpl userDaoImpl;
 		
 		
 		
 		public HttpStatus createUser(User user) {
-			userDaoImpl.createUser(user);
+			userDaoImpl.createUserDetails(user);
 			return HttpStatus.ACCEPTED;
 		}
 		
 		public UserDetails getUserInformation(String user){
-			return userDaoImpl.getUserInformation(user);
+			return userDaoImpl.getUserDetails(user);
 		}
 
 		

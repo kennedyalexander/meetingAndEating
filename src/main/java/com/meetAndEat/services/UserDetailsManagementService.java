@@ -11,6 +11,6 @@ public interface UserDetailsManagementService {
 
 	HttpStatus createUserDetails(UserDetails userDetails);
 	HttpStatus updateUserDetails(UserDetails userDetails);
-	HttpStatus deleteUserDetails(User user);
-	HttpStatus getUserDetails(User user);
+	HttpStatus deleteUserDetails(String user);
+	UserDetails getUserDetails(String user);
 }
