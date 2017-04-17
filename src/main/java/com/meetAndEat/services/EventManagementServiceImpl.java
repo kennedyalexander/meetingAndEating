@@ -3,6 +3,7 @@ package com.meetAndEat.services;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -62,10 +63,23 @@ public class EventManagementServiceImpl implements EventManagementService{
 	}
 	
 	public  HttpStatus activateEvent(String event) {
-		Event activateMe = eventDaoImpl.activateEvent(event);
-		activateMe.setEventStatus(EventSatus.SEARCHING);
-		eventDaoImpl.updateEvent(activateMe);
-		return HttpStatus.ACCEPTED;
+		//get event
+		//check event
+		//activate event
+		UUID uuid = UUID.fromString(event);
+		Event activateMe = eventDaoImpl.getEvent(uuid);
+		if(activateMe.getEventStatus().equals(EventSatus.PENDING)) {
+			//Future Change to is event valid
+			activateMe.setEventStatus(EventSatus.SEARCHING);
+			eventDaoImpl.updateEvent(activateMe);
+			return HttpStatus.ACCEPTED;
+		} else{
+			return HttpStatus.NOT_ACCEPTABLE;
+		}
+	}
+
+	public Boolean isEventValid(Event event){
+			return null;
 	}
 
 	

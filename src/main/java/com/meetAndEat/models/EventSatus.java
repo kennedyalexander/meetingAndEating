@@ -26,5 +26,9 @@ public enum EventSatus {
 	/**
 	 * Event Created but still not activated by the user.
 	 */
-	PENDING
+	PENDING,
+	/**
+	 * Any event as it is initally created.
+	 */
+	INVALID
 }

@@ -86,4 +86,9 @@ public class AppController {
 		return eventManagementService.makeEvent(user);
 	}
 
+	@GetMapping("/activateEvent")
+	public HttpStatus activateEvent(@RequestParam(value="eventId") String eventId){
+		return eventManagementService.activateEvent(eventId);
+	}
+
 }

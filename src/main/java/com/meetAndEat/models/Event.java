@@ -31,7 +31,7 @@ public class Event {
 		this.location = "";
 		this.host = "";
 		this.food = "";
-		this.eventStatus = EventSatus.PENDING;
+		this.eventStatus = EventSatus.INVALID;
 	}
 
 

@@ -138,7 +138,7 @@ public class SiteController {
 	}
 	
 	public Event eventDtoToEvent(EventDto eventDto, String creator, EventSatus eventStatus){
-		return new Event(UUID.randomUUID().toString(), eventDto.getEventName(),eventDto.eventDate, eventDto.minimumGuests, eventDto.maximumGuests, eventDto.location, creator, eventDto.food
+		return new Event(UUID.randomUUID(), eventDto.getEventName(),eventDto.eventDate, eventDto.minimumGuests, eventDto.maximumGuests, eventDto.location, creator, eventDto.food
 				, eventStatus);
 	}
 	

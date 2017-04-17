@@ -1,6 +1,7 @@
 package com.meetAndEat.dao;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class EventDaoImpl implements EventDao{
 		return repository.findAll();
 	}
 	
-	public Event activateEvent(String eventId) {
+	public Event getEvent(UUID eventId) {
 		if (repository.findById(eventId) != null){
 			return repository.findById(eventId).get(0);
 		} else{
